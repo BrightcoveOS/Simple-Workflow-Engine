@@ -1,6 +1,5 @@
 *.class
+.classpath
+.project
 
-# Package Files #
-*.jar
-*.war
-*.ear
+test-output.txt

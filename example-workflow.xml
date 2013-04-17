@@ -1,0 +1,17 @@
+<workflow>
+	<actor class="com.brightcove.opensource.workflowengine.actors.InputAdapter" name="input">
+		<consumer name="print"/>
+	</actor>
+	<actor class="com.brightcove.opensource.workflowengine.actors.PrintAdapter" name="print">
+		<provider name="input"/>
+		<consumer name="output"/>
+		
+		<property name="fields">ID,video</property>
+	</actor>
+	<actor class="com.brightcove.opensource.workflowengine.actors.OutputAdapter" name="output">
+		<provider name="print"/>
+		
+		<property name="output-file">test-output.txt</property>
+		<property name="character-set">UTF-8</property>
+	</actor>
+</workflow>

@@ -1,0 +1,896 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+CSVFormat (Commons CSV 1.0-SNAPSHOT API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="CSVFormat (Commons CSV 1.0-SNAPSHOT API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../org/apache/commons/csv/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CSVFormat.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?org/apache/commons/csv/CSVFormat.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CSVFormat.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.csv</FONT>
+<BR>
+Class CSVFormat</H2>
+<PRE>
+<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>org.apache.commons.csv.CSVFormat</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="http://download.oracle.com/javase/6/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.51"><B>CSVFormat</B></A><DT>extends <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A><DT>implements <A HREF="http://download.oracle.com/javase/6/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</A></DL>
+</PRE>
+
+<P>
+Specifies the format of a CSV file and parses input.
+ <p>
+ This class is immutable.
+ </p>
+ You can extend a format through a builder. For example, to extend the Excel format with columns header, you write:
+ </p>
+ <pre>CSVFormat.EXCEL.toBuilder().withHeader(&quot;Col1&quot;, &quot;Col2&quot;, &quot;Col3&quot;).build();</pre>
+ <p>
+ You can parse through a format. For example, to parse an Excel file with columns header, you write:
+ </p>
+ <pre>Reader in = ...;
+CSVFormat.EXCEL.toBuilder().withHeader(&quot;Col1&quot;, &quot;Col2&quot;, &quot;Col3&quot;).parse(in);</pre>
+ <p>
+<P>
+
+<P>
+<DL>
+<DT><B>Version:</B></DT>
+  <DD>$Id: CSVFormat.java 1461240 2013-03-26 17:48:22Z ggregory $</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#org.apache.commons.csv.CSVFormat">Serialized Form</A></DL>
+<HR>
+
+<P>
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+
+<A NAME="nested_class_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Nested Class Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Builds CSVFormat objects.</TD>
+</TR>
+</TABLE>
+&nbsp;<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#DEFAULT">DEFAULT</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Standard comma separated format, as for <A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180"><CODE>RFC4180</CODE></A> but allowing empty lines.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#EXCEL">EXCEL</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Excel file format (using a comma as the value delimiter).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#MYSQL">MYSQL</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default MySQL format used by the <tt>SELECT INTO OUTFILE</tt> and <tt>LOAD DATA INFILE</tt> operations.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180">RFC4180</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comma separated format as defined by <a href="http://tools.ietf.org/html/rfc4180">RFC 4180</a>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#TDF">TDF</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tab-delimited format, with quote; leading and trailing spaces ignored.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#equals(java.lang.Object)">equals</A></B>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;obj)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#format(java.lang.Object...)">format</A></B>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>...&nbsp;values)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Formats the specified values.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getCommentStart()">getCommentStart</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the character marking the start of a line comment.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;char</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getDelimiter()">getDelimiter</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the character delimiting the values (typically ';', ',' or '\t').</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getEscape()">getEscape</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the escape character.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getIgnoreEmptyLines()">getIgnoreEmptyLines</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies whether empty lines between records are ignored when parsing input.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getIgnoreSurroundingSpaces()">getIgnoreSurroundingSpaces</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies whether spaces around values are ignored when parsing input.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getQuoteChar()">getQuoteChar</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the character used to encapsulate values containing special characters.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../org/apache/commons/csv/Quote.html" title="enum in org.apache.commons.csv">Quote</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getQuotePolicy()">getQuotePolicy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the quote policy output fields.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#getRecordSeparator()">getRecordSeparator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the line separator delimiting output records.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#hashCode()">hashCode</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#isCommentingEnabled()">isCommentingEnabled</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies whether comments are supported by this format.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#isEscaping()">isEscaping</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns whether escape are being processed.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#isQuoting()">isQuoting</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns whether an quoteChar has been defined.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#newBuilder()">newBuilder</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a standard comma separated format builder, as for <A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180"><CODE>RFC4180</CODE></A> but allowing empty lines.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#newBuilder(char)">newBuilder</A></B>(char&nbsp;delimiter)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new CSV format builder.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#newBuilder(org.apache.commons.csv.CSVFormat)">newBuilder</A></B>(<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A>&nbsp;format)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a CSVFormatBuilder, using the values of the given CSVFormat.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../../../org/apache/commons/csv/CSVRecord.html" title="class in org.apache.commons.csv">CSVRecord</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#parse(java.io.Reader)">parse</A></B>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</A>&nbsp;in)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parses the specified content.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#toBuilder()">toBuilder</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a builder based on this format.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/csv/CSVFormat.html#toString()">toString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ FIELD DETAIL =========== -->
+
+<A NAME="field_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="RFC4180"><!-- --></A><H3>
+RFC4180</H3>
+<PRE>
+public static final <A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.74"><B>RFC4180</B></A></PRE>
+<DL>
+<DD>Comma separated format as defined by <a href="http://tools.ietf.org/html/rfc4180">RFC 4180</a>.
+ <h3>RFC 4180:</h3>
+ <ul>
+ <li>withDelimiter(',')</li>
+ <li>withQuoteChar('"')</li>
+ <li>withLineSeparator(CRLF)</li>
+ </ul>
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT"><!-- --></A><H3>
+DEFAULT</H3>
+<PRE>
+public static final <A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.92"><B>DEFAULT</B></A></PRE>
+<DL>
+<DD>Standard comma separated format, as for <A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180"><CODE>RFC4180</CODE></A> but allowing empty lines.
+ <h3>RFC 4180:</h3>
+ <ul>
+ <li>withDelimiter(',')</li>
+ <li>withQuoteChar('"')</li>
+ <li>withLineSeparator(CRLF)</li>
+ </ul>
+ <h3>Additional:</h3>
+ <ul>
+ <li>withIgnoreEmptyLines(true)</li>
+ </ul>
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="EXCEL"><!-- --></A><H3>
+EXCEL</H3>
+<PRE>
+public static final <A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.113"><B>EXCEL</B></A></PRE>
+<DL>
+<DD>Excel file format (using a comma as the value delimiter). Note that the actual value delimiter used by Excel is
+ locale dependent, it might be necessary to customize this format to accommodate to your regional settings.
+ <p/>
+ For example for parsing or generating a CSV file on a French system the following format will be used:
+
+ <pre>
+ CSVFormat fmt = CSVFormat.newBuilder(EXCEL).withDelimiter(';').build();
+ </pre>
+ Settings are:
+ <ul>
+ <li>withDelimiter(',')</li>
+ <li>withQuoteChar('"')</li>
+ <li>withLineSeparator(CRLF)</li>
+ </ul>
+ Note: this is currently the same as RFC4180
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="TDF"><!-- --></A><H3>
+TDF</H3>
+<PRE>
+public static final <A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.119"><B>TDF</B></A></PRE>
+<DL>
+<DD>Tab-delimited format, with quote; leading and trailing spaces ignored.
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="MYSQL"><!-- --></A><H3>
+MYSQL</H3>
+<PRE>
+public static final <A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.133"><B>MYSQL</B></A></PRE>
+<DL>
+<DD>Default MySQL format used by the <tt>SELECT INTO OUTFILE</tt> and <tt>LOAD DATA INFILE</tt> operations. This is
+ a tab-delimited format with a LF character as the line separator. Values are not quoted and special characters
+ are escaped with '\'.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><a href="http://dev.mysql.com/doc/refman/5.1/en/load-data.html">
+      http://dev.mysql.com/doc/refman/5.1/en/load-data.html</a></DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="newBuilder(char)"><!-- --></A><H3>
+newBuilder</H3>
+<PRE>
+public static <A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.150"><B>newBuilder</B></A>(char&nbsp;delimiter)</PRE>
+<DL>
+<DD>Creates a new CSV format builder.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>delimiter</CODE> - the char used for value separation, must not be a line break character
+<DT><B>Returns:</B><DD>a new CSV format builder.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE> - if the delimiter is a line break character</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="newBuilder(org.apache.commons.csv.CSVFormat)"><!-- --></A><H3>
+newBuilder</H3>
+<PRE>
+public static <A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.161"><B>newBuilder</B></A>(<A HREF="../../../../org/apache/commons/csv/CSVFormat.html" title="class in org.apache.commons.csv">CSVFormat</A>&nbsp;format)</PRE>
+<DL>
+<DD>Creates a CSVFormatBuilder, using the values of the given CSVFormat.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>format</CODE> - The format to use values from
+<DT><B>Returns:</B><DD>a new CSVFormatBuilder</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="newBuilder()"><!-- --></A><H3>
+newBuilder</H3>
+<PRE>
+public static <A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.178"><B>newBuilder</B></A>()</PRE>
+<DL>
+<DD>Creates a standard comma separated format builder, as for <A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180"><CODE>RFC4180</CODE></A> but allowing empty lines.
+ <ul>
+ <li>withDelimiter(',')</li>
+ <li>withQuoteChar('"')</li>
+ <li>withEmptyLinesIgnored(true)</li>
+ <li>withLineSeparator(CRLF)</li>
+ </ul>
+
+ Shortcut for <code>CSVFormat.newBuilder(CSVFormat.DEFAULT)</code>
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a standard comma separated format builder, as for <A HREF="../../../../org/apache/commons/csv/CSVFormat.html#RFC4180"><CODE>RFC4180</CODE></A> but allowing empty lines.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDelimiter()"><!-- --></A><H3>
+getDelimiter</H3>
+<PRE>
+public char <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.256"><B>getDelimiter</B></A>()</PRE>
+<DL>
+<DD>Returns the character delimiting the values (typically ';', ',' or '\t').
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the delimiter character</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getQuoteChar()"><!-- --></A><H3>
+getQuoteChar</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.265"><B>getQuoteChar</B></A>()</PRE>
+<DL>
+<DD>Returns the character used to encapsulate values containing special characters.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the quoteChar character</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isQuoting()"><!-- --></A><H3>
+isQuoting</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.274"><B>isQuoting</B></A>()</PRE>
+<DL>
+<DD>Returns whether an quoteChar has been defined.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><code>true</code> if an quoteChar is defined</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCommentStart()"><!-- --></A><H3>
+getCommentStart</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.283"><B>getCommentStart</B></A>()</PRE>
+<DL>
+<DD>Returns the character marking the start of a line comment.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the comment start marker.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isCommentingEnabled()"><!-- --></A><H3>
+isCommentingEnabled</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.294"><B>isCommentingEnabled</B></A>()</PRE>
+<DL>
+<DD>Specifies whether comments are supported by this format.
+
+ Note that the comment introducer character is only recognised at the start of a line.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><tt>true</tt> is comments are supported, <tt>false</tt> otherwise</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getEscape()"><!-- --></A><H3>
+getEscape</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.303"><B>getEscape</B></A>()</PRE>
+<DL>
+<DD>Returns the escape character.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the escape character</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isEscaping()"><!-- --></A><H3>
+isEscaping</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.312"><B>isEscaping</B></A>()</PRE>
+<DL>
+<DD>Returns whether escape are being processed.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><code>true</code> if escapes are processed</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getIgnoreSurroundingSpaces()"><!-- --></A><H3>
+getIgnoreSurroundingSpaces</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.322"><B>getIgnoreSurroundingSpaces</B></A>()</PRE>
+<DL>
+<DD>Specifies whether spaces around values are ignored when parsing input.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><tt>true</tt> if spaces around values are ignored, <tt>false</tt> if they are treated as part of the
+         value.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getIgnoreEmptyLines()"><!-- --></A><H3>
+getIgnoreEmptyLines</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.332"><B>getIgnoreEmptyLines</B></A>()</PRE>
+<DL>
+<DD>Specifies whether empty lines between records are ignored when parsing input.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><tt>true</tt> if empty lines between records are ignored, <tt>false</tt> if they are turned into empty
+         records.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRecordSeparator()"><!-- --></A><H3>
+getRecordSeparator</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.341"><B>getRecordSeparator</B></A>()</PRE>
+<DL>
+<DD>Returns the line separator delimiting output records.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the line separator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="parse(java.io.Reader)"><!-- --></A><H3>
+parse</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../../../org/apache/commons/csv/CSVRecord.html" title="class in org.apache.commons.csv">CSVRecord</A>&gt; <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.358"><B>parse</B></A>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/io/Reader.html?is-external=true" title="class or interface in java.io">Reader</A>&nbsp;in)
+                          throws <A HREF="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</A></PRE>
+<DL>
+<DD>Parses the specified content.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>in</CODE> - the input stream
+<DT><B>Returns:</B><DD>a stream of CSVRecord
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</A></CODE> - If an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="format(java.lang.Object...)"><!-- --></A><H3>
+format</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.369"><B>format</B></A>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>...&nbsp;values)</PRE>
+<DL>
+<DD>Formats the specified values.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>values</CODE> - the values to format
+<DT><B>Returns:</B><DD>the formatted values</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toString()"><!-- --></A><H3>
+toString</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.381"><B>toString</B></A>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A></CODE> in class <CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getQuotePolicy()"><!-- --></A><H3>
+getQuotePolicy</H3>
+<PRE>
+public <A HREF="../../../../org/apache/commons/csv/Quote.html" title="enum in org.apache.commons.csv">Quote</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.410"><B>getQuotePolicy</B></A>()</PRE>
+<DL>
+<DD>Returns the quote policy output fields.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the quote policy</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="hashCode()"><!-- --></A><H3>
+hashCode</H3>
+<PRE>
+public int <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.415"><B>hashCode</B></A>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A></CODE> in class <CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="equals(java.lang.Object)"><!-- --></A><H3>
+equals</H3>
+<PRE>
+public boolean <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.433"><B>equals</B></A>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A>&nbsp;obj)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A></CODE> in class <CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toBuilder()"><!-- --></A><H3>
+toBuilder</H3>
+<PRE>
+public <A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv">CSVFormat.CSVFormatBuilder</A> <A HREF="../../../../src-html/org/apache/commons/csv/CSVFormat.html#line.496"><B>toBuilder</B></A>()</PRE>
+<DL>
+<DD>Creates a builder based on this format.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a new builder</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../org/apache/commons/csv/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CSVFormat.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../org/apache/commons/csv/CSVFormat.CSVFormatBuilder.html" title="class in org.apache.commons.csv"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?org/apache/commons/csv/CSVFormat.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CSVFormat.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2013 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All Rights Reserved.
+</BODY>
+</HTML>
